@@ -16,8 +16,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
     val bornesService: BornesService
-
+    var test = 0
     init {
+        test = 0
         val urlApi = "http://coralielecocq.fr/"
         val retrofit = Retrofit.Builder().baseUrl(urlApi)
             .addConverterFactory(GsonConverterFactory.create())
@@ -34,7 +35,12 @@ class MainActivity : AppCompatActivity() {
             .load(logoUrl)
             .into(logoImageView)
 
-
+    logoImageView.setOnClickListener{
+        if (test == 10){
+logoImageView.setImageResource(R.drawable.raptor)
+        }
+        else test++
+    }
         login_button.setOnClickListener {
             val intent = Intent(this@MainActivity, PhotosActivity::class.java)
             Log.d("MainActivity","code event: ${code_event.text.toString()}")
