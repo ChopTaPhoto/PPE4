@@ -1,6 +1,7 @@
 package fr.efficom.formation.ppe1719
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -14,10 +15,13 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
+    private var ameno: MediaPlayer? = null
 
     val bornesService: BornesService
     var test = 0
     init {
+
+
         test = 0
         val urlApi = "http://coralielecocq.fr/"
         val retrofit = Retrofit.Builder().baseUrl(urlApi)
@@ -36,8 +40,11 @@ class MainActivity : AppCompatActivity() {
             .into(logoImageView)
 
     logoImageView.setOnClickListener{
+        ameno= MediaPlayer.create(this,R.raw.ameno)
         if (test == 10){
 logoImageView.setImageResource(R.drawable.raptor)
+            ameno?.start()
+
         }
         else test++
     }
