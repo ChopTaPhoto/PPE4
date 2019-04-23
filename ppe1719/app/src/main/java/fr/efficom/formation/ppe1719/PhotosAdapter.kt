@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.stfalcon.imageviewer.StfalconImageViewer
@@ -13,6 +14,7 @@ import okhttp3.Response
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
+
 
 class PhotosAdapter(val photos: List<Photo>, val onPhotoDownload: (photo:Photo)->Unit) : RecyclerView.Adapter<PhotoViewHolder>() {
     val bornesService = createBornesService()
@@ -71,7 +73,7 @@ class PhotosAdapter(val photos: List<Photo>, val onPhotoDownload: (photo:Photo)-
         holder.downloadButton.setOnClickListener{
             onPhotoDownload(photo)
             true
-
+    Toast.makeText(holder.itemView.context, "Téléchargement en cours", Toast.LENGTH_SHORT).show()
         }
 
 
